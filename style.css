@@ -1,0 +1,102 @@
+:root {
+  --bg: #f8f9fc;
+  --surface: #ffffff;
+  --text: #1a1c20;
+  --muted: #5b5f6b;
+  --line: #e1e2ec;
+  --blue: #2f5bb7;
+  --blue-soft: #d9e2ff;
+  --on-blue: #ffffff;
+  --teal: #006a63;
+  --teal-soft: #9ef2e7;
+  --orange: #9a4600;
+  --orange-soft: #ffdbc8;
+  --radius: 16px;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #111318;
+    --surface: #1b1e25;
+    --text: #e3e2e6;
+    --muted: #a3a7b3;
+    --line: #2c303a;
+    --blue: #9ab7ff;
+    --blue-soft: #1d3a7a;
+    --on-blue: #0b1f4d;
+    --teal: #6dd5ca;
+    --teal-soft: #00403c;
+    --orange: #ffb68a;
+    --orange-soft: #5a2900;
+  }
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body {
+  margin: 0; background: var(--bg); color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; line-height: 1.5;
+}
+.top {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 16px; border-bottom: 1px solid var(--line); background: var(--surface);
+}
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1.15rem; }
+.brand img { width: 32px; height: 32px; border-radius: 8px; }
+.namebox { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: .9rem; }
+.namebox input {
+  width: 140px; padding: 6px 10px; border-radius: 10px; border: 1px solid var(--line);
+  background: var(--bg); color: var(--text); font-size: .95rem;
+}
+main { max-width: 520px; margin: 0 auto; padding: 24px 16px 48px; }
+.hero { text-align: center; margin-bottom: 20px; }
+.hero h1 { font-size: 1.9rem; margin: 0 0 6px; }
+.hero h1 span { color: var(--blue); }
+.hero p { margin: 0; color: var(--muted); }
+.badge {
+  display: inline-block; margin-top: 12px; padding: 6px 14px; border-radius: 999px;
+  background: var(--teal-soft); color: var(--teal); font-size: .9rem;
+}
+.tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 20px 0; }
+.tab {
+  padding: 14px; border-radius: var(--radius); border: 1px solid var(--line);
+  background: var(--surface); color: var(--text); font-size: 1.05rem; font-weight: 600; cursor: pointer;
+}
+.tab.active.send { background: var(--blue); color: var(--on-blue); border-color: var(--blue); }
+.tab.active.recv { background: var(--teal); color: var(--bg); border-color: var(--teal); }
+.card {
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 20px; text-align: center;
+}
+.drop {
+  border: 2px dashed var(--line); border-radius: var(--radius); padding: 28px 12px;
+  cursor: pointer; color: var(--muted);
+}
+.drop.over { border-color: var(--blue); color: var(--blue); }
+.drop strong { display: block; color: var(--text); font-size: 1.1rem; margin-bottom: 4px; }
+.filelist { list-style: none; padding: 0; margin: 14px 0; text-align: left; font-size: .95rem; }
+.filelist li { display: flex; justify-content: space-between; gap: 10px; padding: 6px 0; border-bottom: 1px solid var(--line); }
+.filelist li span:first-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.btn {
+  display: inline-block; width: 100%; padding: 14px; border: 0; border-radius: 999px; cursor: pointer;
+  background: var(--blue); color: var(--on-blue); font-size: 1.05rem; font-weight: 600; margin-top: 10px;
+}
+.btn.teal { background: var(--teal); color: var(--bg); }
+.btn.ghost { background: transparent; color: var(--muted); border: 1px solid var(--line); }
+.btn:disabled { opacity: .5; cursor: default; }
+.code {
+  font-size: 2.6rem; font-weight: 800; letter-spacing: .25em; color: var(--blue);
+  margin: 6px 0; padding-left: .25em;
+}
+#qr { display: inline-block; background: #fff; padding: 12px; border-radius: 12px; margin: 8px 0; }
+#qr img, #qr canvas { display: block; }
+.muted { color: var(--muted); font-size: .9rem; }
+.codeinput {
+  width: 100%; text-align: center; font-size: 2rem; letter-spacing: .3em; padding: 12px;
+  border-radius: var(--radius); border: 1px solid var(--line); background: var(--bg); color: var(--text);
+}
+.bar { height: 10px; background: var(--line); border-radius: 999px; overflow: hidden; margin: 14px 0 6px; }
+.bar div { height: 100%; width: 0; background: var(--teal); transition: width .15s; }
+#reader { margin: 12px auto 0; max-width: 320px; }
+.status { margin: 10px 0; font-weight: 600; }
+.error { color: #ba1a1a; }
+@media (prefers-color-scheme: dark) { .error { color: #ffb4ab; } }
+footer { text-align: center; color: var(--muted); font-size: .85rem; padding: 0 16px 32px; }

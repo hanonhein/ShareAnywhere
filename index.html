@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Share Anywhere – Send files to any device</title>
+  <link rel="icon" href="icon.svg">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="brand"><img src="icon.svg" alt=""> Share Anywhere</div>
+    <label class="namebox">Name <input id="devName" maxlength="20"></label>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Send files to <span>any device</span></h1>
+      <p>Use a 6-digit code or a QR code. No sign-up.</p>
+      <span class="badge">Files go straight to the other device</span>
+    </section>
+
+    <div class="tabs">
+      <button class="tab send active" id="tabSend">Send</button>
+      <button class="tab recv" id="tabRecv">Receive</button>
+    </div>
+
+    <!-- SEND -->
+    <section id="sendPane" class="card">
+      <div id="sendPick">
+        <div class="drop" id="drop">
+          <strong>Choose files</strong>
+          Tap here or drag files in
+        </div>
+        <input type="file" id="fileInput" multiple hidden>
+        <ul class="filelist" id="fileList"></ul>
+        <button class="btn" id="btnStart" disabled>Create code</button>
+      </div>
+
+      <div id="sendShare" hidden>
+        <div class="muted">Enter this code on the other device</div>
+        <div class="code" id="codeText">------</div>
+        <div id="qr"></div>
+        <div class="muted">or scan the QR code</div>
+        <div class="status" id="sendStatus">Waiting for the other device…</div>
+        <div class="bar" id="sendBarWrap" hidden><div id="sendBar"></div></div>
+        <button class="btn ghost" id="btnCancelSend">Cancel</button>
+      </div>
+    </section>
+
+    <!-- RECEIVE -->
+    <section id="recvPane" class="card" hidden>
+      <div id="recvEnter">
+        <div class="muted">Type the 6-digit code</div>
+        <input class="codeinput" id="codeInput" inputmode="numeric" maxlength="6" placeholder="000000">
+        <button class="btn teal" id="btnConnect">Connect</button>
+        <button class="btn ghost" id="btnScan">Scan QR code</button>
+        <div id="reader"></div>
+      </div>
+
+      <div id="recvLive" hidden>
+        <div class="status" id="recvStatus">Connecting…</div>
+        <ul class="filelist" id="offerList"></ul>
+        <div id="offerButtons" hidden>
+          <button class="btn teal" id="btnAccept">Accept</button>
+          <button class="btn ghost" id="btnDecline">Decline</button>
+        </div>
+        <div class="bar" id="recvBarWrap" hidden><div id="recvBar"></div></div>
+        <ul class="filelist" id="doneList"></ul>
+        <button class="btn ghost" id="btnRecvDone" hidden>Done</button>
+      </div>
+    </section>
+  </main>
+  <footer>Code stops working after 10 minutes or after one use.</footer>
+
+  <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
