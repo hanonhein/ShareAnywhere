@@ -4,22 +4,21 @@
       <stop offset="0" stop-color="#244092"/>
       <stop offset="1" stop-color="#0f1530"/>
     </linearGradient>
-    <linearGradient id="arrow" x1="0" y1="0" x2="1" y2="1">
+    <linearGradient id="core" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#9EF2E7"/>
       <stop offset="1" stop-color="#2BB5A8"/>
     </linearGradient>
   </defs>
   <rect width="512" height="512" fill="url(#bg)"/>
-  <!-- faded page behind -->
-  <rect x="190" y="40" width="230" height="300" rx="34" fill="#FFFFFF" opacity="0.22" transform="rotate(8 305 190)"/>
-  <!-- white page -->
-  <rect x="104" y="70" width="270" height="350" rx="38" fill="#000" opacity="0.25" transform="translate(0 12)"/>
-  <rect x="104" y="70" width="270" height="350" rx="38" fill="#FFFFFF"/>
-  <rect x="150" y="122" width="110" height="34" rx="17" fill="#FFB68B"/>
-  <rect x="150" y="188" width="170" height="22" rx="11" fill="#CBD3E3"/>
-  <rect x="150" y="232" width="120" height="22" rx="11" fill="#CBD3E3"/>
-  <!-- teal send circle with arrow -->
-  <circle cx="352" cy="352" r="102" fill="#0f1530" opacity="0.35" transform="translate(0 10)"/>
-  <circle cx="352" cy="352" r="102" fill="url(#arrow)"/>
-  <path d="M312 392 L384 320 M340 316 H388 V364" stroke="#0f1530" stroke-width="22" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <!-- rings = "anywhere" -->
+  <circle cx="256" cy="256" r="150" fill="none" stroke="#FFFFFF" stroke-opacity="0.25" stroke-width="6"/>
+  <circle cx="256" cy="256" r="215" fill="none" stroke="#FFFFFF" stroke-opacity="0.12" stroke-width="6"/>
+  <!-- devices on the rings -->
+  <circle cx="362" cy="150" r="26" fill="#FFB68B"/>
+  <circle cx="106" cy="256" r="22" fill="#D9E2FF"/>
+  <circle cx="330" cy="436" r="22" fill="#FFFFFF"/>
+  <!-- centre: send -->
+  <circle cx="256" cy="266" r="92" fill="#000" opacity="0.3"/>
+  <circle cx="256" cy="256" r="92" fill="url(#core)"/>
+  <path d="M222 290 L292 220 M256 214 H298 V256" stroke="#0f1530" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
 </svg>
