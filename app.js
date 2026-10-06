@@ -233,15 +233,27 @@ function connectWithCode(code) {
   });
 }
 
+// Inside the Android app, files are saved straight to Downloads through this bridge.
+const bridge = window.AndroidBridge || null;
+function toBase64(chunk) {
+  const bytes = chunk instanceof ArrayBuffer
+    ? new Uint8Array(chunk)
+    : new Uint8Array(chunk.buffer, chunk.byteOffset, chunk.byteLength);
+  let bin = "";
+  for (let i = 0; i < bytes.length; i += 0x8000) {
+    bin += String.fromCharCode.apply(null, bytes.subarray(i, i + 0x8000));
+  }
+  return btoa(bin);
+}
+
 function setupReceiver(conn) {
   let total = 0, got = 0;
   let cur = null;          // file being received {name,size,parts}
-  const finished = [];
 
   conn.on("data", (msg) => {
     if (msg instanceof ArrayBuffer || ArrayBuffer.isView(msg)) {
       if (!cur) return;
-      cur.parts.push(msg);
+      if (bridge) bridge.writeChunk(toBase64(msg)); else cur.parts.push(msg);
       got += msg.byteLength;
       $("recvBar").style.width = ((got / total) * 100).toFixed(1) + "%";
       $("recvStatus").textContent = "Receiving… " + fmtSize(got) + " / " + fmtSize(total);
@@ -260,6 +272,11 @@ function setupReceiver(conn) {
       $("btnDecline").onclick = () => { conn.send({ type: "decline" }); resetRecv(); };
     } else if (msg.type === "file-start") {
       cur = { name: msg.name, size: msg.size, parts: [] };
+      if (bridge) bridge.beginFile(msg.name);
+    } else if (msg.type === "file-end" && bridge) {
+      bridge.endFile();
+      li($("doneList"), cur.name, "Saved in Downloads");
+      cur = null;
     } else if (msg.type === "file-end") {
       const blob = new Blob(cur.parts);
       const url = URL.createObjectURL(blob);
